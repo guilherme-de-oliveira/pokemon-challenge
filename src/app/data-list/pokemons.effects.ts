@@ -16,19 +16,13 @@ export class PokemonsEffects {
                 concatMap(action =>
                     this.mainService.getAllPokemons()),
                 map(pokemons => allPokemonsLoaded({pokemons}))
-
             )
     );
-
 
     savePokemon$ = createEffect(
         () => this.actions$
             .pipe(
-                ofType(PokemonActions.pokemonUpdated),
-                concatMap(action => this.mainService.savePokemon(
-                    action.update.id,
-                    action.update.changes
-                ))
+                ofType(PokemonActions.pokemonUpdated)
             ),
         {dispatch: false}
     );

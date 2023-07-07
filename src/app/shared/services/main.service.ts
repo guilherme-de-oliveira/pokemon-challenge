@@ -25,44 +25,36 @@ export class MainService {
       .pipe(
         map(response => response['results']),
         tap(data => {
-          this.getIdFromUrl(data)
-          // let idx = new RegExp('^[0-9]*$', data.url)
-          // data.id = 
-          return data;
+          this.setDefaultInfo(data);
+
+          return [data];
         })
-        
-        // map(pokemon => {
-        //    this.http.get(`${pokemon.url}`).subscribe(data => pokemon)
-          
-
-        // })
-        // concatMap(res => {
-        //   const response = res['results'];
-        //   this.http.get<Pokemon[]>(`${res.url}`)),
-        // }
-
-
-    );
-  
+      );
   }
 
-  getIdFromUrl(pokemons: Pokemon[]) {
+  setDefaultInfo(pokemons: Pokemon[]) {
     pokemons.forEach(pokemon => {
-      console.log(pokemon.url)
-      let indexAux = pokemon.url.lastIndexOf('/', pokemon.url.lastIndexOf('/') - 1);
+      const indexAux = pokemon.url.lastIndexOf('/', pokemon.url.lastIndexOf('/') - 1);
       let idx = pokemon.url.slice(indexAux);
       idx = idx.replaceAll('/', '')
-      console.log(idx)
+      
       pokemon.id = Number(idx);
+      pokemon.favorite = false;
+      pokemon.comments = '';
     })
   }
 
-  searchPokemon(searchText: string) {
-    console.log('service')
+  searchPokemon(pokemons, searchText) {
+    return pokemons.filter((pokemon) => pokemon.name.includes(searchText));
   }
 
-  savePokemon(id: string | number, changes: Partial<Pokemon>) {
-    return this.http.put('/api/course/' + id, changes);
+  filterFavorites(pokemons) {
+    return pokemons.filter((pokemon) => pokemon.favorite);
+  }
+
+  searchOnFavorites(pokemons, searchText) {
+    const favorites = this.filterFavorites(pokemons);
+    return favorites.filter((pokemon) => pokemon.name.includes(searchText));
   }
 
   getDetails(id: number) {

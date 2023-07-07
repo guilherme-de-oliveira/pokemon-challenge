@@ -3,17 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StoreModule } from '@ngrx/store';
+import { ActionReducer, ActionReducerMap, MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { DataListModule } from './data-list/data-list.module';
 import { RouterModule } from '@angular/router';
 import { EntityDataModule } from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
-import { metaReducers, reducers } from './reducers';
+import { metaReducers, reducer } from './reducers';
 import {RouterState, StoreRouterConnectingModule} from '@ngrx/router-store';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-// import { entityConfig } from './entity-metadata';
+import { localStorageSync } from 'ngrx-store-localstorage';
+
+
+
 
 @NgModule({
   declarations: [
@@ -25,7 +28,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([]),
-    StoreModule.forRoot(reducers, {
+    StoreModule.forRoot(reducer, {
       metaReducers,
       runtimeChecks : {
           strictStateImmutability: true,

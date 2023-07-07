@@ -1,4 +1,4 @@
-import { TypeName } from './type-name.model copy';
+import { TypeName } from './type-name.model';
 
 export interface Type {
   type: TypeName;

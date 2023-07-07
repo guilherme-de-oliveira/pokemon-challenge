@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { PokemonDetails } from 'src/app/shared/pokemon-details.model';
 import { MainService } from 'src/app/shared/services/main.service';
 import * as echarts from 'echarts';
@@ -17,7 +17,6 @@ export class DetailsComponent {
   constructor(
     private mainService: MainService,
     private router: Router,
-    private route: ActivatedRoute,
     ) {
       
 

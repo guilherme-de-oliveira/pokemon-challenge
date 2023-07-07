@@ -1,12 +1,23 @@
-<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-
-    <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-  <div class="modal-header" tabindex="0">
-    <h4 class="modal-title">First Modal Title</h4>
-  </div>
-  <div class="modal-body">
-    <p>Body</p>
+<div class="modal-header">
+  <h5 class="modal-title">{{ pokemon.id }} | {{ pokemon.name | uppercase }}</h5>
 </div>
+<div class="modal-body">
+  <div class="container-fluid">
+      <div class="form-group">
+        <label for="comments">Adicione um Comentário</label>
+        <textarea #comment [value]="comments" class="form-control" rows="3"></textarea>
+      </div>
+      <div class="row justify-content-end">
+        <div class="col-3 text-right">
+          <button type="button" class="btn btn-outline-danger" (click)="removeComment(pokemon.id)">
+            <i class="bi bi-trash"></i> Comentário
+          </button>
+        </div>
+        <div class="col-2 text-right">
+          <button type="submit" class="btn btn-primary" (click)="save(comment.value)">
+            <i class="bi bi-check2"></i> Salvar
+          </button>
+        </div>
+      </div>
+    </div>
 </div>
-  </div>

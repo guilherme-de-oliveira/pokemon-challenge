@@ -24,6 +24,12 @@ export const selectFavoritePokemons = createSelector(
     pokemons => pokemons.filter(pokemon => pokemon.favorite)
 );
 
+export const selectPokemonById = createSelector(
+    selectAllPokemons,
+    pokemons => pokemons.filter(pokemon => pokemon.favorite)
+);
+
+
 
 export const arePokemonsLoaded = createSelector(
     selectPokemonsState,

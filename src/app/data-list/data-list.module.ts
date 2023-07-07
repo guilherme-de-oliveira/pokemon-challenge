@@ -18,14 +18,6 @@ import { ModalWrapperComponent } from '../details/modal-container.component';
 import { DetailsComponent } from '../details/details/details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
-const entityMetaData: EntityMetadataMap = {
-  Pokemon: {
-    
-  }
-}
-
-
 @NgModule({
   declarations: [
     CommentComponent,
@@ -41,6 +33,7 @@ const entityMetaData: EntityMetadataMap = {
       },
       // { path: 'details/:id', component:ModalWrapperComponent, data:{component:DetailsComponent}}
       { path: 'details/:id', loadChildren: () => import('../details/details.module').then(m => m.DetailsModule) },
+      { path: 'comments/:id', component:ModalWrapperComponent, data:{component:CommentComponent}}
   ], ),
     EffectsModule.forFeature([PokemonsEffects]),
     StoreModule.forFeature("pokemons", pokemonsReducer),
