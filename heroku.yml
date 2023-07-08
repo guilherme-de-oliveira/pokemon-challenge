@@ -1,0 +1,14 @@
+build:
+  docker:
+    web: Dockerfile
+run:
+  web: node server.js
+  worker:
+    command:
+      - echo 'Initializing install'
+      - npm i
+      - echo 'Initializing build'
+      - ng build --environment=production
+      - echo 'Initializing server'
+      - node server.js
+    image: web
