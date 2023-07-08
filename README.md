@@ -16,6 +16,17 @@ Run `npm run test` to execute the unit tests via Jest.
 
 ## Architecture & Data Flow
 
+![arch](./src/assets/images/pokemon-challenge.png)
+
+![flow](./src/assets/images/data-flow.png)
+
+![data-list](./src/assets/images/data-list.png)
+
+![details](./src/assets/images/details.png)
+
+![comment](./src/assets/images/comment.png)
+
+![table](./src/assets/images/table-of-contents.png)
 
 
 ## Suggestion for improvements
