@@ -6,22 +6,21 @@
                     loading="lazy" 
                     [src]="getImageUrl(pokemon.id)" 
                     class="img-fluid" 
-                    alt="pokemon"
-                >
+                    alt="pokemon">
             </div>
         </div>
         <div class="col-md-8">
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h5 class="card-title">{{pokemon.name | uppercase}}</h5>
+                        <h5 class="card-title"><span class="badge badge-danger">#{{pokemon.id}}</span>  |  {{pokemon.name | uppercase}}</h5>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <p class="card-text">{{pokemon.comments}}</p>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-4 text-right">
                         <button type="button" class="btn btn-primary" [routerLink]="'comments/' + pokemon.id">
                             <i class="bi bi-pen"></i> Comentário
                         </button>

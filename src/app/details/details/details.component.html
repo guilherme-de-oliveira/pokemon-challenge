@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h5 class="modal-title">{{ pokemon?.id }} | {{ pokemon?.name | uppercase }}</h5>
+  <h5 class="modal-title">#{{ pokemon?.id }} | {{ pokemon?.name | uppercase }}</h5>
 </div>
 <div class="modal-body">
   <div class="container-fluid">
@@ -10,12 +10,11 @@
             loading="lazy"
             [src]="getImage()"
             class="img-fluid"
-            alt="pokemon"
-          />
+            alt="pokemon"/>
         </div>
       </div>
       <div class="col-md-8 d-flex justify-content-center">
-        <div id="main"></div>
+        <div id="chart"></div>
       </div>
     </div>
 
@@ -35,9 +34,7 @@
         <p>
           <b>Habilidades: </b>
           <span *ngFor="let ability of pokemon?.abilities">
-            <!-- <ng-template *ngFor="let name of ability.ability"> -->
             <span> {{ ability.ability.name }} |</span>
-            <!-- </ng-template> -->
           </span>
         </p>
         <b>Tipo(s): </b>

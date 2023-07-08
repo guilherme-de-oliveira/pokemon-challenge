@@ -1,11 +1,19 @@
-.main {
-    // margin: 2% 15% 1% 15%;
-    // font-family: var(--font-family);
-}
-
 .content {
     min-height: 22em;
     margin-top: 4em;
     margin-bottom: 3em;
 }
 
+.to-top {
+    bottom: 0;
+    cursor: pointer;
+    margin: 0 100px 100px 0;
+    position: fixed;
+    right: 0;
+    opacity: 0;
+}
+
+.show-scrollTop {
+    opacity: 1 !important;
+    transition: all 0.2s ease-in-out;
+}

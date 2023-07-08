@@ -3,12 +3,12 @@ import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { AppState } from 'src/app/reducers';
-import { Pokemon } from 'src/app/shared/pokemon.model';
+import { Pokemon } from 'src/app/shared/models/pokemon.model';
 import { selectPokemons } from '../../pokemons.selectors';
 import { Update } from '@ngrx/entity';
 import { pokemonUpdated } from '../../pokemon.actions';
 import { FormGroup } from '@angular/forms';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-comment',
@@ -19,8 +19,8 @@ export class CommentComponent implements OnInit {
   pokemons$!: Observable<Pokemon[]>;
   pokemon!: Pokemon;
   pokemonId: number = 0;
-  comments: string = '';
-  form: FormGroup;
+  comments?: string;
+  form!: FormGroup;
 
   constructor(
     private store: Store<AppState>,
@@ -29,7 +29,6 @@ export class CommentComponent implements OnInit {
   ){}
   ngOnInit() {
     const routeId = this.router.url.match(/\d+/g);
-
     if (routeId !== null) {
       this.pokemonId = Number(routeId[0]);
     }
@@ -43,14 +42,11 @@ export class CommentComponent implements OnInit {
     this.pokemons$.subscribe(pokemons => {
       this.pokemon = pokemons[this.pokemonId - 1]
       this.comments = this.pokemon.comments;
-      
-      console.log(this.comments)
     });
   }
 
   save(comment: string) {
     const pokemon = {...this.pokemon}
-    console.log(comment)
     pokemon.comments = comment;
     
     const update: Update<Pokemon> = {
@@ -58,16 +54,14 @@ export class CommentComponent implements OnInit {
       changes: pokemon
     }
     
-    console.log(pokemon)
     this.store.dispatch(pokemonUpdated({update}));
 
     // Close Modal
     this.modalService.dismissAll();
   }
 
-  removeComment(id: number) {
+  removeComment() {
     this.comments = '';
     this.save('');
   }
-
 }

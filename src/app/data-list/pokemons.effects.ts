@@ -8,7 +8,6 @@ import {allPokemonsLoaded} from './pokemon.actions';
 
 @Injectable()
 export class PokemonsEffects {
-
     loadPokemons$ = createEffect(
         () => this.actions$
             .pipe(
@@ -27,9 +26,8 @@ export class PokemonsEffects {
         {dispatch: false}
     );
 
-    constructor(private actions$: Actions,
-                private mainService: MainService) {
-
-    }
-
+    constructor(
+        private actions$: Actions,
+        private mainService: MainService
+    ) {}
 }

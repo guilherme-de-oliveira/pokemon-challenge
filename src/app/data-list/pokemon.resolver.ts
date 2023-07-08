@@ -10,12 +10,9 @@ import {arePokemonsLoaded} from './pokemons.selectors';
 
 @Injectable()
 export class PokemonsResolver{
-
     loading = false;
 
-    constructor(private store: Store<AppState>) {
-
-    }
+    constructor(private store: Store<AppState>) {}
 
     resolve(route: ActivatedRouteSnapshot,
             state: RouterStateSnapshot): Observable<any> {
@@ -33,7 +30,6 @@ export class PokemonsResolver{
                 first(),
                 finalize(() => this.loading = false)
             );
-
     }
 
 }

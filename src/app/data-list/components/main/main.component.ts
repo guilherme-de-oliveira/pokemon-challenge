@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { selectPokemons } from '../../pokemons.selectors';
-import { Pokemon } from 'src/app/shared/pokemon.model';
+import { Pokemon } from 'src/app/shared/models/pokemon.model';
 import { Observable } from 'rxjs';
-import {select, Store} from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { AppState } from 'src/app/reducers';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MainService } from 'src/app/shared/services/main.service';
@@ -14,8 +14,8 @@ import { MainService } from 'src/app/shared/services/main.service';
 })
 export class MainComponent implements OnInit{
   pokemons$!: Observable<Pokemon[]>;
-  pokemons: Pokemon[];  
-  pokemonsFilter: Pokemon[];
+  pokemons?: Pokemon[];  
+  pokemonsFilter: Pokemon[] = [];
   onlyFavorite: boolean = false;
 
   constructor(
@@ -23,7 +23,7 @@ export class MainComponent implements OnInit{
     private store: Store<AppState>,
     private modalService: NgbModal) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.pokemons$ = this.store.pipe(select(selectPokemons));
     
     this.pokemons$.subscribe(pokemons => {
@@ -43,13 +43,12 @@ export class MainComponent implements OnInit{
     } else {
       this.pokemons = this.mainService.searchPokemon(this.pokemonsFilter, searchText);
     }
-    
   }
 
   toggleFavorite() {
     this.onlyFavorite = !this.onlyFavorite;
     const btn = document.getElementById('filterByFavorite');
-    btn.className  = (this.onlyFavorite) ? 'btn btn-outline-warning btn-lg active' : 'btn btn-outline-warning btn-lg';
+    btn!.className  = (this.onlyFavorite) ? 'btn btn-outline-warning btn-lg active' : 'btn btn-outline-warning btn-lg';
 
     // Filter Items By Favorite
     if (this.onlyFavorite) {

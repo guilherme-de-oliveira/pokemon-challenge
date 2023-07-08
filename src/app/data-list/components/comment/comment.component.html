@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h5 class="modal-title">{{ pokemon.id }} | {{ pokemon.name | uppercase }}</h5>
+  <h5 class="modal-title">#{{ pokemon.id }} | {{ pokemon.name | uppercase }}</h5>
 </div>
 <div class="modal-body">
   <div class="container-fluid">
@@ -9,8 +9,8 @@
       </div>
       <div class="row justify-content-end">
         <div class="col-3 text-right">
-          <button type="button" class="btn btn-outline-danger" (click)="removeComment(pokemon.id)">
-            <i class="bi bi-trash"></i> Comentário
+          <button type="button" class="btn btn-outline-danger" (click)="removeComment()">
+            <i class="bi bi-trash"></i> Remover
           </button>
         </div>
         <div class="col-2 text-right">

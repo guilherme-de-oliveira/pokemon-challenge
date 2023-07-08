@@ -3,15 +3,14 @@
     <div class="row justify-content-md-center pokemon-logo">
         <img src="../../../assets/images/pokemon_logo.png" class="img-fluid" alt="Pokemon Logo" width="300">
     </div>
-    <div class="row">
+    <div class="row justify-content-md-center">
         <div class="col-10">
             <label for="search-input">Perquise seu Pokémon</label>
             <div class="input-group">
                 <input class="form-control form-control-lg" 
                     type="search" id="search-input" 
                     placeholder="Ex. Charmander"
-                    (keyup)="filterPokemon($event)"
-                >
+                    (keyup)="filterPokemon($event)">
                 <span class="input-group-append">
                     <div class="input-group-text bg-transparent">
                         <i class="bi bi-search"></i>
@@ -19,7 +18,7 @@
                 </span>
             </div>
         </div>
-        <div class="col-2">
+        <div class="col-1">
             <label for="search-input">Favoritos</label>
             <div>
                 <button 
@@ -32,8 +31,25 @@
             </div>
         </div>
     </div>
-    <div *ngFor="let pokemon of pokemons">
-        <app-pokemon-card [pokemon]="pokemon"></app-pokemon-card>
+    
+    <div class="row justify-content-md-center">
+        <div class="mx-auto">
+            <app-pagination
+                #pagination
+                [collectionSize]="pokemons!.length"
+                [pageSize]="10"
+                [firstLastButtons]="true"
+                [maxSize]="3"
+            ></app-pagination>
+        </div>
+    </div>
+
+    <div *ngFor="let pokemon of pokemons | slice
+        : (pagination.currentPage - 1) * pagination.pageSize
+        : pagination.currentPage * pagination.pageSize">
+        <div class="mx-auto" style="width: 80%;">
+            <app-pokemon-card [pokemon]="pokemon"></app-pokemon-card>
+        </div>
     </div>
 </div>
     
