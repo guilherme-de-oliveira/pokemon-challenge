@@ -6,6 +6,9 @@ This project was generated with:
 - Node: 18.16.0
 - Package Manager: npm 9.5.1
 
+# Live Running
+It can be accessed through: https://pokemon-challenge-phi.vercel.app/
+
 ## Development server
 
 Run `npm install` to install project's dependencies then `npm run start` for a dev server run. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
